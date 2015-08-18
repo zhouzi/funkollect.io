@@ -75,6 +75,7 @@ header {
   input,
   button {
     @include form-base(6px, 8px);
+    transition: border-color 200ms ease-out;
   }
 
   input {
@@ -83,7 +84,10 @@ header {
     outline: none;
 
     &:focus {
-      //background-color: $gray;
+      &,
+      ~ button {
+        border-color: $gray;
+      }
     }
   }
 
