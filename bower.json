@@ -1,0 +1,19 @@
+{
+  "name": "funkollect.io",
+  "description": "Have fun managing your funko's funky pop collection.",
+  "authors": [
+    "Gabin Aureche <hello@gabinaureche.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "devDependencies": {},
+  "dependencies": {
+    "normalize.css": "~3.0.3",
+    "mithril": "~0.2.0"
+  }
+}
