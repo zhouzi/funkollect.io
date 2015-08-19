@@ -92,7 +92,7 @@ nav {
 
   a {
     display: block;
-    padding: $gutter;
+    padding: ($gutter / 2);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -101,6 +101,10 @@ nav {
     &:hover,
     &.link--active {
       background-color: $gray-light;
+    }
+
+    @media #{$sm-up} {
+      padding: $gutter;
     }
   }
 }
