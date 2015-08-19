@@ -31,9 +31,14 @@
       else if filter is 'need'
         products = products.filter (product) -> product.need() is true
 
-      products.slice 0, @limit()
+      {
+        products: products.slice 0, @limit()
+        hits: products.length
+      }
 
-    search: () ->
+    search: (event) ->
+      event.preventDefault()
+
       @limit ITEMS_PER_PAGE
       @query @queryInput()
 

@@ -1,6 +1,6 @@
 ((app) ->
   app.productsView = (ctrl) ->
-    ctrl.products().map (product) ->
+    ctrl.products().products.map (product) ->
       m 'article.article', { className: if product.owned() then 'article--owned' else if product.need() then 'article--need' else '' }, [
         m 'div.article__inner', [
           m '.article__image', [

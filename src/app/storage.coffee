@@ -10,7 +10,7 @@
 
   m.request({ method: 'GET', url: 'products.json' }).then (products) ->
     app.storage.products products.map (product) ->
-      app.storage.counters().all++;
+      app.storage.counters().all++
 
       if not app.storage.counters()[product.license]?
         app.storage.counters()[product.license] =
