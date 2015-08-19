@@ -302,6 +302,21 @@ small {
   color: $color-primary;
 }
 
+.load-more-button {
+  flex-grow: 1;
+  text-align: center;
+  background-color: #fff;
+  padding: $gutter / 2;
+  margin: 0 ($gutter / 2) / 2;
+  cursor: pointer;
+  color: $gray;
+
+  &:focus,
+  &:hover {
+    color: $color-primary;
+  }
+}
+
 
 
 .logo {

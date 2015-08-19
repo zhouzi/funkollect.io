@@ -15,10 +15,15 @@
         height = Math.max body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight
 
         if body.scrollTop + window.innerHeight >= (height - 200)
-          currentLimit = @limit()
-          @limit currentLimit += ITEMS_PER_PAGE
+          @showMore()
           m.redraw true
       , false
+
+    showMore: () ->
+      currentLimit = @limit()
+
+      if currentLimit < @products().hits
+        @limit currentLimit += ITEMS_PER_PAGE
 
     products: () ->
       query = @query()
