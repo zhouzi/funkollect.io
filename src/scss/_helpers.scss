@@ -1,0 +1,27 @@
+$font-family: 'Dosis', sans-serif;
+$font-size-root: 18px;
+$font-size-base: 1rem;
+$line-height-base: 1.4;
+
+$text-color: #3d3d3d;
+$gray-dark: lighten($text-color, 50%);
+$gray: lighten($text-color, 60%);
+$gray-light: lighten($text-color, 72%);
+
+$color-primary: #1192cd;
+
+$gutter: 20px;
+$sm-up: "(min-width: 468px)";
+$md-up: "(min-width: 768px)";
+$lg-up: "(min-width: 1024px)";
+
+
+
+@mixin form-base ($padding-vertical, $padding-horizontal: $padding-vertical) {
+  display: inline-block;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  padding: $padding-vertical $padding-horizontal;
+  background-color: transparent;
+  border: 2px solid $gray-light;
+}

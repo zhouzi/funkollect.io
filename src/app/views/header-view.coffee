@@ -7,9 +7,9 @@
           m 'span.logo__secondary', 'llect.io'
         ]
         m 'ul', [
-          m 'li', m 'a[href=#/]', { className: if not ctrl.filter() then 'nav--active' else '' }, '#all (' + ctrl.products().hits + ')'
-          m 'li', m 'a[href=#/owned]', { className: if ctrl.filter() is 'owned' then 'nav--active' else '' }, '#owned (' + app.storage.owned().length + ')'
-          m 'li', m 'a[href=#/need]', { className: if ctrl.filter() is 'need' then 'nav--active' else '' }, '#need (' + app.storage.need().length + ')'
+          m 'li', m 'a[href=#/]', { className: if not ctrl.filter() then 'link--active' else '' }, '#all (' + ctrl.products().hits + ')'
+          m 'li', m 'a[href=#/owned]', { className: if ctrl.filter() is 'owned' then 'link--active' else '' }, '#owned (' + app.storage.owned().length + ')'
+          m 'li', m 'a[href=#/need]', { className: if ctrl.filter() is 'need' then 'link--active' else '' }, '#need (' + app.storage.need().length + ')'
         ]
       ]
       m 'form', { onsubmit: ctrl.search.bind ctrl }, [

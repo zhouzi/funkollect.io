@@ -1,0 +1,82 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+::-webkit-input-placeholder { color: $gray; }
+:-moz-placeholder { color: $gray; }
+::-moz-placeholder { color: $gray; }
+:-ms-input-placeholder { color: $gray; }
+
+html {
+  box-sizing: border-box;
+  font-size: $font-size-root;
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-color;
+  background-color: $gray-light;
+}
+
+a,
+.link {
+  color: $gray-dark;
+
+  &,
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+
+  &.link--active,
+  &:focus,
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+input,
+button,
+.button {
+  @include form-base(6px, 8px);
+  outline: none;
+  transition: border-color 200ms ease-out;
+}
+
+input {
+  border-radius: 4px;
+
+  &:focus {
+    &,
+    ~ button {
+      border-color: $gray;
+    }
+  }
+}
+
+button,
+.button {
+  color: $gray-dark;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &.button--active,
+  &:focus,
+  &:hover {
+    color: $color-primary;
+  }
+
+  &.button--disabled {
+    color: $gray;
+    text-decoration: line-through;
+  }
+
+  [class*="icon-"] {
+    line-height: 1;
+    vertical-align: middle;
+  }
+}
