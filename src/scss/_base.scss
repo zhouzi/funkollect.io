@@ -25,6 +25,7 @@ body {
 a,
 .link {
   color: $gray-dark;
+  cursor: pointer;
 
   &,
   &:focus,
@@ -36,6 +37,16 @@ a,
   &:focus,
   &:hover {
     color: $color-primary;
+  }
+}
+
+.link--border {
+  color: $color-primary;
+  border-bottom: 2px solid transparent;
+
+  &:focus,
+  &:hover {
+    border-bottom-color: $color-primary;
   }
 }
 

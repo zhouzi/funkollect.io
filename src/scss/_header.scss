@@ -25,14 +25,11 @@ header {
       align-self: auto;
     }
 
-    a {
-      color: $gray;
-      border-bottom: 2px solid transparent;
+    .link--border {
       margin-right: ($gutter / 2);
 
-      &:focus,
-      &:hover {
-        border-bottom-color: $color-primary;
+      &:not(:hover):not(:focus) {
+        color: $gray;
       }
     }
   }

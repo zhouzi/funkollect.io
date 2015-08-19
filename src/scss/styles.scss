@@ -135,17 +135,10 @@ small {
   color: $gray;
 }
 
-.load-more-button {
+.block {
   flex-grow: 1;
-  cursor: pointer;
-  color: $gray;
   background-color: #fff;
   text-align: center;
   padding: $gutter / 2;
-  margin: 0 ($gutter / 2) / 2;
-
-  &:focus,
-  &:hover {
-    color: $color-primary;
-  }
+  margin: ($gutter / 2) (($gutter / 2) / 2) (($gutter / 2) / 2) (($gutter / 2) / 2);
 }

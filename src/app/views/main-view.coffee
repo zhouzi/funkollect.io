@@ -4,6 +4,6 @@
       app.headerView ctrl
       m 'section',
         if ctrl.products().products.length then app.productsView ctrl else if ctrl.filter() is 'owned' then app.ownedBlankView ctrl else if ctrl.filter() is 'need' then app.needBlankView ctrl
-        m '.load-more-button', { onclick: ctrl.showMore.bind ctrl }, 'load more results' if ctrl.products().hits > ctrl.limit()
+        m '.block.link', { onclick: ctrl.showMore.bind ctrl }, 'load more results' if ctrl.products().hits > ctrl.limit()
     ]
 )(@app)

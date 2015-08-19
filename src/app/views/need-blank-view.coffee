@@ -1,4 +1,4 @@
 ((app) ->
   app.needBlankView = (ctrl) ->
-    m 'p', 'No products, yet.'
+    m '.block', 'Here are listed the products you need. But wait... how can it be empty?'
 )(@app)
