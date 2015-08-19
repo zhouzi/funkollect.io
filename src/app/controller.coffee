@@ -12,9 +12,10 @@
       window.addEventListener 'scroll', () =>
         body = document.body
         html = document.documentElement
-        height = Math.max body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight
+        scrollPosition = Math.max(body.scrollTop, html.scrollTop) + (html.clientHeight || window.innerHeight)
+        height = Math.max body.scrollHeight, body.offsetHeight, html.scrollHeight, html.offsetHeight
 
-        if body.scrollTop + window.innerHeight >= (height - 200)
+        if scrollPosition >= (height - (height / 6))
           @showMore()
           m.redraw true
       , false
