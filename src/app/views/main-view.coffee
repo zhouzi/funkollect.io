@@ -1,6 +1,6 @@
 ((app) ->
   app.view = (ctrl) ->
-    m 'main', [
+    m 'main', { config: ctrl.bindInfiniteScroll.bind ctrl }, [
       app.headerView ctrl
       m 'section',
         if ctrl.products().products.length then app.productsView ctrl else if ctrl.filter() is 'owned' then app.ownedBlankView ctrl else if ctrl.filter() is 'need' then app.needBlankView ctrl

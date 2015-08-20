@@ -9,16 +9,20 @@
       @queryInput = m.prop ''
       @query = m.prop ''
 
-      window.addEventListener 'scroll', () =>
-        body = document.body
-        html = document.documentElement
-        scrollPosition = Math.max(body.scrollTop, html.scrollTop) + (html.clientHeight || window.innerHeight)
-        height = Math.max body.scrollHeight, body.offsetHeight, html.scrollHeight, html.offsetHeight
+    bindInfiniteScroll: (element, isInitialized, context) ->
+      if not isInitialized
+        infiniteScrollListener = window.addEventListener 'scroll', () =>
+          body = document.body
+          html = document.documentElement
+          scrollPosition = Math.max(body.scrollTop, html.scrollTop) + (html.clientHeight || window.innerHeight)
+          height = Math.max body.scrollHeight, body.offsetHeight, html.scrollHeight, html.offsetHeight
 
-        if scrollPosition >= (height - (height / 6))
-          @showMore()
-          m.redraw true
-      , false
+          if scrollPosition >= (height - (height / 6))
+            @showMore()
+            m.redraw true
+        , false
+
+        context.onunload = () -> window.removeEventListener 'scroll', infiniteScrollListener, false
 
     showMore: () ->
       currentLimit = @limit()
