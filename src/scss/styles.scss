@@ -30,18 +30,6 @@ section {
   @media #{$lg-up} {
     width: 25%;
   }
-
-  &.article--need img {
-    transform: scale(1);
-  }
-
-  img {
-    display: block;
-    height: auto;
-    width: 100%;
-    transform: scale(.9);
-    transition: transform 300ms ease-out;
-  }
 }
 
 .article__inner {
@@ -73,6 +61,30 @@ section {
     font-size: 1rem;
     font-weight: normal;
   }
+}
+
+.article__image__mock {
+  padding-top: 72%;
+}
+
+.article__image {
+  position: relative;
+
+  img {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    width: 100%;
+    transform: scale(.9) translate(-50%, -50%);
+    transform-origin: top left;
+    transition: transform 300ms ease-out;
+  }
+}
+
+.article--need img {
+  transform: scale(1) translate(-50%, -50%);
 }
 
 .article__footer {

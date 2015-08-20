@@ -7,8 +7,9 @@
   app.productsView = (ctrl) ->
     ctrl.products().products.map (product) ->
       m 'article.article', { key: product.id, className: if product.owned() then 'article--owned' else if product.need() then 'article--need' else '' }, [
-        m 'div.article__inner', [
+        m '.article__inner', [
           m '.article__image', [
+            m '.article__image__mock'
             m 'img', { onload: loadHighRes, src: 'public/images/s/' + product.id + '.png' }
           ]
           m '.article__footer', [
