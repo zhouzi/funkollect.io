@@ -136,9 +136,9 @@ small {
 }
 
 .block {
-  flex-grow: 1;
   background-color: #fff;
   text-align: center;
+  width: 100%;
   padding: $gutter / 2;
   margin: ($gutter / 2) (($gutter / 2) / 2) (($gutter / 2) / 2) (($gutter / 2) / 2);
 }
