@@ -1,10 +1,15 @@
 ((app) ->
+  loadHighRes = (event) ->
+    target = event.target
+    src = target.getAttribute 'src'
+    target.setAttribute 'src', src.replace /\/s\//g, '/'
+
   app.productsView = (ctrl) ->
     ctrl.products().products.map (product) ->
-      m 'article.article', { className: if product.owned() then 'article--owned' else if product.need() then 'article--need' else '' }, [
+      m 'article.article', { key: product.id, className: if product.owned() then 'article--owned' else if product.need() then 'article--need' else '' }, [
         m 'div.article__inner', [
           m '.article__image', [
-            m 'img', { src: 'public/images/' + product.id + '.png' }
+            m 'img', { onload: loadHighRes, src: 'public/images/s/' + product.id + '.png' }
           ]
           m '.article__footer', [
             m 'h2', product.name

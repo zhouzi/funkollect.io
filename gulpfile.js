@@ -33,6 +33,14 @@ gulp.task('scripts', function () {
     ;
 });
 
+gulp.task('images', function () {
+    return gulp
+        .src('public/images/*.png')
+        .pipe($.imagemin())
+        .pipe(gulp.dest('public/images'))
+    ;
+});
+
 gulp.task('watch', ['default'], function () {
     gulp.watch('src/scss/**/*.scss', ['styles']);
     gulp.watch('src/app/**/*.coffee', ['scripts']);
