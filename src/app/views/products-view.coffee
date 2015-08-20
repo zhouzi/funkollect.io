@@ -1,8 +1,8 @@
 ((app) ->
-  loadHighRes = (event) ->
-    target = event.target
-    src = target.getAttribute 'src'
-    target.setAttribute 'src', src.replace /\/s\//g, '/'
+  loadHighRes = (element, isInitialized) ->
+    if not isInitialized
+      src = element.getAttribute 'src'
+      element.setAttribute 'src', src.replace /\/s\//g, '/'
 
   app.productsView = (ctrl) ->
     ctrl.products().products.map (product) ->
@@ -10,7 +10,7 @@
         m '.article__inner', [
           m '.article__image', [
             m '.article__image__mock'
-            m 'img', { onload: loadHighRes, src: 'public/images/s/' + product.id + '.png' }
+            m 'img', { config: loadHighRes, src: 'public/images/s/' + product.id + '.png' }
           ]
           m '.article__footer', [
             m 'h2', product.name
