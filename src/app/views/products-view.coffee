@@ -15,7 +15,7 @@
           m '.article__footer', [
             m 'h2', product.name
             m 'h3', [
-              m 'span.article__license', product.license
+              m 'a.article__license', { onclick: ctrl.search.bind ctrl, 'license: ' + product.license }, product.license
               m 'small', '(' + ctrl.counters()[product.license].owned + '/' + ctrl.counters()[product.license].total + ' owned)'
             ]
             m 'div.article__actions', [

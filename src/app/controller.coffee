@@ -31,8 +31,16 @@
         @limit currentLimit += ITEMS_PER_PAGE
 
     products: () ->
-      query = @query()
-      products = app.storage.products().filter (product) -> product.title.toLowerCase().indexOf(query.toLowerCase()) > -1
+      query = @query().split(':').map (val) -> val.trim()
+
+      if query.length is 1
+        term = query[0]
+        field = 'title'
+      else
+        term = query[1]
+        field = query[0]
+
+      products = app.storage.products().filter (product) -> product[field].toLowerCase().indexOf(term.toLowerCase()) > -1
 
       filter = @filter()
 
@@ -47,10 +55,18 @@
       }
 
     search: (event) ->
-      event.preventDefault()
-
       @limit ITEMS_PER_PAGE
-      @query @queryInput()
+
+      if typeof event == 'string'
+        if @query() isnt event
+          @query event
+          @queryInput event
+        else
+          @query ''
+          @queryInput ''
+      else
+        @query @queryInput()
+        event.preventDefault()
 
     need: (product, isNeed) ->
       index = app.storage.need().indexOf product.id
