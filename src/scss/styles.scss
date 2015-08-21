@@ -123,7 +123,14 @@ section {
 }
 
 .article__license {
+  color: $text-color;
+  border-bottom: 2px solid $gray-light;
   margin-right: .4rem;
+
+  &:focus,
+  &:hover {
+    border-bottom-color: $color-primary;
+  }
 }
 
 .article--need .article__inner:before {
