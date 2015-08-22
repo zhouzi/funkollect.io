@@ -22,6 +22,7 @@ gulp.task('scripts', function () {
             'src/app/views/products-view.coffee',
             'src/app/views/owned-blank-view.coffee',
             'src/app/views/need-blank-view.coffee',
+            'src/app/views/no-results-view.coffee',
             'src/app/views/main-view.coffee',
 
             'src/app/router.coffee'

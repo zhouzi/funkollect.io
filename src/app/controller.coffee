@@ -14,20 +14,22 @@
       inputValue = if field then field + ': ' + query else query
       @queryInput = m.prop inputValue
 
-    bindInfiniteScroll: (element, isInitialized, context) ->
-      if not isInitialized
-        infiniteScrollListener = window.addEventListener 'scroll', () =>
-          body = document.body
-          html = document.documentElement
-          scrollPosition = Math.max(body.scrollTop, html.scrollTop) + (html.clientHeight || window.innerHeight)
-          height = Math.max body.scrollHeight, body.offsetHeight, html.scrollHeight, html.offsetHeight
+      @filteredProducts = m.prop null
+      @bindInfiniteScroll()
 
-          if scrollPosition >= (height - (height / 6))
-            @showMore()
-            m.redraw true
-        , false
+    bindInfiniteScroll: () ->
+      infiniteScrollListener = window.addEventListener 'scroll', () =>
+        body = document.body
+        html = document.documentElement
+        scrollPosition = Math.max(body.scrollTop, html.scrollTop) + (html.clientHeight || window.innerHeight)
+        height = Math.max body.scrollHeight, body.offsetHeight, html.scrollHeight, html.offsetHeight
 
-        context.onunload = () -> window.removeEventListener 'scroll', infiniteScrollListener, false
+        if scrollPosition >= (height - (height / 6))
+          @showMore()
+          m.redraw true
+      , false
+
+      @onunload = () -> window.removeEventListener 'scroll', infiniteScrollListener, false
 
     showMore: () ->
       currentLimit = @limit()
@@ -45,16 +47,20 @@
       terms = @query()
       query = terms.query
       field = terms.field || 'title'
+      products = @filteredProducts()
 
-      products = app.storage.products().filter (product) =>
-        @satisfiesQuery(product, field, query)
+      if not products?
+        products = app.storage.products().filter (product) =>
+          @satisfiesQuery(product, field, query)
 
-      filter = @filter()
+        filter = @filter()
 
-      if filter is 'owned'
-        products = products.filter (product) -> product.owned() is true
-      else if filter is 'need'
-        products = products.filter (product) -> product.need() is true
+        if filter is 'owned'
+          products = products.filter (product) -> product.owned() is true
+        else if filter is 'need'
+          products = products.filter (product) -> product.need() is true
+
+        @filteredProducts(products)
 
       {
         products: products.slice 0, @limit()
@@ -78,7 +84,11 @@
       params = {}
       params.query = query if query
       params.field = field if field
-      m.route '/', params
+
+      route = '/'
+      route += @filter() if @filter()
+
+      m.route route, params
       m.redraw.strategy 'diff'
 
     getShareUrl: () ->
