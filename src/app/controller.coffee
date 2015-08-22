@@ -1,6 +1,17 @@
 ((app) ->
   ITEMS_PER_PAGE = 12
 
+  shuffle = (o) ->
+    i = o.length
+
+    while i
+      j = Math.floor(Math.random() * i)
+      x = o[--i]
+      o[i] = o[j]
+      o[j] = x
+
+    o
+
   app.controller = class
     constructor: () ->
       @filter = m.prop m.route.param('filter') || ''
@@ -90,6 +101,10 @@
 
       m.route route, params
       m.redraw.strategy 'diff'
+
+    shuffle: () ->
+      @limit ITEMS_PER_PAGE
+      @filteredProducts shuffle @filteredProducts()
 
     getShareUrl: () ->
       encodeURIComponent location.href
