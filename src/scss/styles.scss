@@ -55,6 +55,7 @@ section {
 
   h2 {
     font-size: 1.2rem;
+    margin-bottom: ($gutter / 2);
   }
 
   h3 {
@@ -89,6 +90,11 @@ section {
 
 .article__footer {
   padding-top: $gutter;
+}
+
+.article__stats {
+  display: block;
+  margin-top: .2rem;
 }
 
 .article__actions {

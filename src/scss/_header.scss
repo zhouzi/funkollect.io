@@ -14,13 +14,13 @@ header {
 
     @media #{$sm-up} {
       display: block;
-      padding-top: $gutter / 2;
+      padding: ($gutter / 2) 0;
       align-self: flex-end;
       order: 1;
     }
 
     @media #{$lg-up} {
-      padding-top: 0;
+      padding: 0;
       order: 2;
       align-self: auto;
     }
@@ -35,6 +35,7 @@ header {
   }
 
   input {
+    width: 240px;
     border-right: 0;
     border-radius: 4px 0 0 4px;
   }

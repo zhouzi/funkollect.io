@@ -18,7 +18,7 @@
             m 'h2', product.name
             m 'h3', [
               m 'a.article__license', { className: (if hasQuery and ctrl.satisfiesQuery product, 'license' then 'article__license--active' else ''), onclick: ctrl.search.bind ctrl, 'license: ' + product.license }, product.license
-              m 'small', '(' + ctrl.counters()[product.license].owned + '/' + ctrl.counters()[product.license].total + ' owned)'
+              m 'small.article__stats', '(total: ' + ctrl.counters()[product.license].total + ', owned: ' + ctrl.counters()[product.license].owned + ', need: ' + ctrl.counters()[product.license].need + ')'
             ]
             m 'div.article__actions', [
               m 'button', {
