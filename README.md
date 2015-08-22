@@ -6,5 +6,7 @@ Have fun managing your funko's funky pop collection.
 
 ## Ideas
 
-* Add a scroll to top button
-* Add a way to share and load a collection by concatenating owned/needed ids in the url.
+* Add a scroll to top button.
+* Add a way to share and load a collection by concatenating owned and needed ids in the url.
+* Add a shuffle button to get random results.
+* Add a way to share a search's state (e.g to display only star wards products). This means we need to pass the query into the url.
