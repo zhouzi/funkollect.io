@@ -2,5 +2,5 @@
   m.route.mode = 'hash'
   app.router = m.route document.getElementById('app'), '/',
     '/': app
-    '/:filter': app
+    '/:filter?field&query': app
 )(@app)

@@ -6,8 +6,13 @@
       @filter = m.prop m.route.param('filter') || ''
       @counters = app.storage.counters
       @limit = m.prop ITEMS_PER_PAGE
-      @queryInput = m.prop ''
-      @query = m.prop { query: '', field: 'title' }
+
+      query = m.route.param('query') || ''
+      field = if ['name', 'title', 'license', 'category'].indexOf(m.route.param('field')) > -1 then m.route.param 'field' else ''
+      @query = m.prop { query: query, field: field }
+
+      inputValue = if field then field + ': ' + query else query
+      @queryInput = m.prop inputValue
 
     bindInfiniteScroll: (element, isInitialized, context) ->
       if not isInitialized
@@ -70,11 +75,14 @@
         query = ''
         field = ''
 
-      inputValue = if field then field + ': ' + query else query
-      @queryInput inputValue
+      params = {}
+      params.query = query if query
+      params.field = field if field
+      m.route '/', params
+      m.redraw.strategy 'diff'
 
-      @query { query: query, field: field }
-      @limit ITEMS_PER_PAGE
+    getShareUrl: () ->
+      encodeURIComponent location.href
 
     need: (product, isNeed) ->
       index = app.storage.need().indexOf product.id
