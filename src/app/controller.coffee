@@ -7,7 +7,7 @@
       @counters = app.storage.counters
       @limit = m.prop ITEMS_PER_PAGE
       @queryInput = m.prop ''
-      @query = m.prop ''
+      @query = m.prop { query: '', field: 'title' }
 
     bindInfiniteScroll: (element, isInitialized, context) ->
       if not isInitialized
@@ -30,17 +30,19 @@
       if currentLimit < @products().hits
         @limit currentLimit += ITEMS_PER_PAGE
 
+    satisfiesQuery: (product, field, query) ->
+      field = @query().field if not field
+      query = @query().query if not query
+
+      product[field].toLowerCase().indexOf(query) > -1
+
     products: () ->
-      query = @query().split(':').map (val) -> val.trim()
+      terms = @query()
+      query = terms.query
+      field = terms.field || 'title'
 
-      if query.length is 1
-        term = query[0]
-        field = 'title'
-      else
-        term = query[1]
-        field = query[0]
-
-      products = app.storage.products().filter (product) -> product[field].toLowerCase().indexOf(term.toLowerCase()) > -1
+      products = app.storage.products().filter (product) =>
+        @satisfiesQuery(product, field, query)
 
       filter = @filter()
 
@@ -55,18 +57,24 @@
       }
 
     search: (event) ->
-      @limit ITEMS_PER_PAGE
+      event.preventDefault && event.preventDefault()
 
-      if typeof event == 'string'
-        if @query() isnt event
-          @query event
-          @queryInput event
-        else
-          @query ''
-          @queryInput ''
-      else
-        @query @queryInput()
-        event.preventDefault()
+      terms = (if typeof event is 'string' then event else @queryInput()).split ':'
+      query = (terms.pop() || '').trim().toLowerCase()
+      field = (terms.shift() || '').trim()
+
+      # If event is a string, meaning it is manually set and doesn't come from the search form
+      # And the query is the same as the current one (same query, same field), then clear it to display all results
+      # It actually acts as a toggle when clicking a product's license
+      if typeof event is 'string' and query is @query().query and field is @query().field
+        query = ''
+        field = ''
+
+      inputValue = if field then field + ': ' + query else query
+      @queryInput inputValue
+
+      @query { query: query, field: field }
+      @limit ITEMS_PER_PAGE
 
     need: (product, isNeed) ->
       index = app.storage.need().indexOf product.id

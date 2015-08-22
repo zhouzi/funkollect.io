@@ -1,10 +1,12 @@
 ((app) ->
-  loadHighRes = (element, isInitialized) ->
-    if not isInitialized
-      src = element.getAttribute 'src'
-      element.setAttribute 'src', src.replace /\/s\//g, '/'
-
   app.productsView = (ctrl) ->
+    hasQuery = !!ctrl.query().query
+
+    loadHighRes = (element, isInitialized) ->
+      if not isInitialized
+        src = element.getAttribute 'src'
+        element.setAttribute 'src', src.replace /\/s\//g, '/'
+
     ctrl.products().products.map (product) ->
       m 'article.article', { key: product.id, className: if product.owned() then 'article--owned' else if product.need() then 'article--need' else '' }, [
         m '.article__inner', [
@@ -15,7 +17,7 @@
           m '.article__footer', [
             m 'h2', product.name
             m 'h3', [
-              m 'a.article__license', { onclick: ctrl.search.bind ctrl, 'license: ' + product.license }, product.license
+              m 'a.article__license', { className: (if hasQuery and ctrl.satisfiesQuery product, 'license' then 'article__license--active' else ''), onclick: ctrl.search.bind ctrl, 'license: ' + product.license }, product.license
               m 'small', '(' + ctrl.counters()[product.license].owned + '/' + ctrl.counters()[product.license].total + ' owned)'
             ]
             m 'div.article__actions', [

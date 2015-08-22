@@ -127,6 +127,7 @@ section {
   border-bottom: 2px solid $gray-light;
   margin-right: .4rem;
 
+  &.article__license--active,
   &:focus,
   &:hover {
     border-bottom-color: $color-primary;
