@@ -5,7 +5,11 @@
     loadHighRes = (element, isInitialized) ->
       if not isInitialized
         src = element.getAttribute 'src'
-        element.setAttribute 'src', src.replace /\/s\//g, '/'
+        highResSrc = src.replace /\/s\//g, '/'
+
+        highResImg = new Image
+        highResImg.onload = () -> element.setAttribute 'src', highResSrc
+        highResImg.src = highResSrc
 
     ctrl.products().products.map (product) ->
       m 'article.article', { key: product.id, className: if product.owned() then 'article--owned' else if product.need() then 'article--need' else '' }, [
