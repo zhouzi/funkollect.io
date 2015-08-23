@@ -26,7 +26,10 @@
             ]
           ]
 
-          m 'span.link', { onclick: ctrl.clearSearch.bind ctrl }, 'Clear' if ctrl.hasQuery()
+          m 'span.link', { onclick: ctrl.clearSearch.bind ctrl }, [
+            m 'span.icon-clear'
+            m 'span', 'Clear'
+          ] if ctrl.hasQuery()
         ]
 
         m '.actions__right', [
