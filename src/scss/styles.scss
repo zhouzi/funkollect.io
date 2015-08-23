@@ -168,3 +168,54 @@ small {
   padding: $gutter / 2;
   margin: ($gutter / 2) (($gutter / 2) / 2) (($gutter / 2) / 2) (($gutter / 2) / 2);
 }
+
+.actions {
+  display: none;
+
+  @media #{$sm-up} {
+    display: flex;
+    align-items: center;
+    padding: ($gutter / 2);
+  }
+
+  input,
+  .button,
+  button {
+    border-color: lighten($gray, 8%);
+  }
+
+  .button,
+  button {
+    &:focus,
+    &:hover {
+      border-color: $color-primary;
+    }
+  }
+}
+
+.actions__left {
+  flex: 1;
+}
+
+.search-form {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: ($gutter / 2);
+
+  input {
+    width: 240px;
+    border-right: 0;
+    border-radius: 4px 0 0 4px;
+
+    &:focus {
+      &,
+      ~ button {
+        border-color: $gray;
+      }
+    }
+  }
+
+  button {
+    border-radius: 0 4px 4px 0;
+  }
+}

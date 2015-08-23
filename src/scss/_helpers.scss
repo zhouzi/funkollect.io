@@ -22,6 +22,7 @@ $lg-up: "(min-width: 1024px)";
   font-size: $font-size-base;
   line-height: $line-height-base;
   padding: $padding-vertical $padding-horizontal;
-  background-color: transparent;
+  background-color: #fff;
   border: 2px solid $gray-light;
+  border-radius: 4px;
 }

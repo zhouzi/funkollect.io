@@ -12,14 +12,16 @@
           m 'li', m 'a[href=/need]', { config: m.route, className: if ctrl.filter() is 'need' then 'link--active' else '' }, '#need (' + app.storage.need().length + ')'
         ]
       ]
-      m 'form', { onsubmit: ctrl.search.bind ctrl }, [
-        m 'a[class="link--border"]', { onclick: ctrl.shuffle.bind ctrl }, 'shuffle'
-        m 'a[target="_blank"][class="link--border"]', { href: 'https://twitter.com/home?status=Have%20fun%20managing%20your%20funko%27s%20funky%20pop%20collection.%20' + ctrl.getShareUrl() + '%20via%20%40zh0uzi%20%23funko%20%23collection' }, 'share'
-        #m 'a[href="https://twitter.com/home?status=Have%20feedback%3F%20Wanna%20submit%20a%20feature%3F%20Report%20a%20bug%3F%20Get%20in%20touch%20%40zh0uzi"][target="_blank"][class="link--border"]', 'contact'
-        m 'a[href="https://github.com/Zhouzi/funkollect.io"][class="link--border"]', 'contribute'
-        m 'input[type="text"][placeholder="Search..."]', { value: ctrl.queryInput(), onchange: m.withAttr 'value', ctrl.queryInput }
-        m 'button[type="submit"]', [
-          m 'span[class="icon-search"]'
+
+      m '.header__right', [
+        m 'a[target="_blank"][class="link--border"]', { href: 'https://twitter.com/home?status=Have%20fun%20managing%20your%20funko%27s%20funky%20pop%20collection.%20' + ctrl.getShareUrl() + '%20via%20%40zh0uzi%20%23funko%20%23collection' }, [
+          m 'span.icon-twitter'
+          m 'span', 'Share'
+        ]
+
+        m 'a[href="https://github.com/Zhouzi/funkollect.io"][class="link--border"]', [
+          m 'span.icon-github'
+          m 'span', 'Contribute'
         ]
       ]
     ]

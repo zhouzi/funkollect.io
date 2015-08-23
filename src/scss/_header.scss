@@ -5,43 +5,33 @@ header {
   background-color: #fff;
   flex-direction: column;
 
-  @media #{$lg-up} {
+  @media #{$md-up} {
     flex-direction: row;
   }
+}
 
-  form {
-    display: none;
+.header__right {
+  display: none;
 
-    @media #{$sm-up} {
-      display: block;
-      padding: ($gutter / 2) 0;
-      align-self: flex-end;
-      order: 1;
-    }
-
-    @media #{$lg-up} {
-      padding: 0;
-      order: 2;
-      align-self: auto;
-    }
-
-    .link--border {
-      margin-right: ($gutter / 2);
-
-      &:not(:hover):not(:focus) {
-        color: $gray;
-      }
-    }
+  @media #{$sm-up} {
+    display: block;
+    padding: ($gutter / 2) 0;
+    align-self: flex-end;
+    order: 1;
   }
 
-  input {
-    width: 240px;
-    border-right: 0;
-    border-radius: 4px 0 0 4px;
+  @media #{$md-up} {
+    padding: 0;
+    order: 2;
+    align-self: auto;
   }
 
-  button {
-    border-radius: 0 4px 4px 0;
+  .link--border {
+    margin-left: ($gutter / 2);
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 }
 

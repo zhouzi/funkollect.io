@@ -41,12 +41,27 @@ a,
 }
 
 .link--border {
-  color: $color-primary;
   border-bottom: 2px solid transparent;
+
+  &,
+  &:not(:hover):not(:focus) {
+    color: $gray;
+  }
 
   &:focus,
   &:hover {
     border-bottom-color: $color-primary;
+  }
+}
+
+a,
+.link,
+.button,
+button {
+  [class*="icon-"] {
+    vertical-align: middle;
+    line-height: 1;
+    margin-right: .3rem;
   }
 }
 
@@ -55,25 +70,14 @@ button,
 .button {
   @include form-base(6px, 8px);
   outline: none;
-  transition: border-color 200ms ease-out;
-}
-
-input {
-  border-radius: 4px;
-
-  &:focus {
-    &,
-    ~ button {
-      border-color: $gray;
-    }
-  }
+  /*transition: color 200ms ease-out,
+              border-color 200ms ease-out;*/
 }
 
 button,
 .button {
-  color: $gray-dark;
   cursor: pointer;
-  border-radius: 4px;
+  color: $gray-dark;
 
   &.button--active,
   &:focus,

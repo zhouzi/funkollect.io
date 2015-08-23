@@ -96,15 +96,18 @@
       params.query = query if query
       params.field = field if field
 
-      route = '/'
-      route += @filter() if @filter()
-
-      m.route route, params
+      m.route '/' + @filter(), params
       m.redraw.strategy 'diff'
+
+    clearSearch: () ->
+      m.route '/' + @filter(), {}
 
     shuffle: () ->
       @limit ITEMS_PER_PAGE
       @filteredProducts shuffle @filteredProducts()
+
+    hasQuery: () ->
+      @query().query.length
 
     getShareUrl: () ->
       encodeURIComponent location.href.replace /#.+/, '#' + m.route()
