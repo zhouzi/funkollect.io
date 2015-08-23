@@ -107,7 +107,7 @@
       @filteredProducts shuffle @filteredProducts()
 
     getShareUrl: () ->
-      encodeURIComponent location.href
+      encodeURIComponent location.href.replace /#.+/, '#' + m.route()
 
     need: (product, isNeed) ->
       index = app.storage.need().indexOf product.id
