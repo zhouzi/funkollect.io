@@ -4,6 +4,10 @@ Have fun managing your funko's funky pop collection.
 
 * [Start Collecting](http://funkollect.io)
 
+## Contribute
+
+If you have an idea, spotted a bug, have feedback or want to submit a feature simply [open an issue](https://github.com/Zhouzi/funkollect.io/issues/new) or tweet me [@zh0uzi](http://twitter.com/zh0uzi).
+
 ## Ideas
 
 * [ ] Add a "scroll to top" button.
