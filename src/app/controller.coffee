@@ -73,9 +73,13 @@
 
         @filteredProducts(products)
 
+      hits = products.length
+      products = products.slice 0, @limit()
+      app.storage.setViewed products
+
       {
-        products: products.slice 0, @limit()
-        hits: products.length
+        hits: hits
+        products: products
       }
 
     search: (event) ->
@@ -104,7 +108,15 @@
 
     shuffle: () ->
       @limit ITEMS_PER_PAGE
-      @filteredProducts shuffle @filteredProducts()
+
+      products = shuffle @filteredProducts()
+      viewed = []
+      notviewed = []
+
+      products.forEach (product) ->
+        if app.storage.isViewed product then viewed.push product else notviewed.push product
+
+      @filteredProducts notviewed.concat viewed
 
     hasQuery: () ->
       @query().query.length
